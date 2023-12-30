@@ -1,0 +1,451 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+}
+body{
+    color: white ;
+    background-color: black;
+    overflow: hidden;
+}
+.header{ 
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px 10%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100 ;
+}  
+.logo{
+    font-size: 32px;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    filter: drop-shadow(0 0 5px black);
+     
+}
+.aba{
+ 
+  position: relative;
+}
+nav a,span{ 
+font-size: 18px;
+color: white;
+text-decoration: none;
+font-weight: 500;
+margin-left: 35px;
+transition: .3s;
+
+}
+nav a:hover,nav a span:hover,
+nav a.active{
+    color: #c40094;
+}
+.abt{
+  background-color: #09001d;
+  padding: 10px 20px;
+  border-radius: 6px;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  min-width:500px;
+  color: white;
+
+}
+nav a:hover .abt {
+  display: block;
+}
+main{
+    min-height: 100vh;
+    background-image: url('bg1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: .3s ease;
+    pointer-events: auto;
+   
+ }
+ .home{
+    position: relative;
+    left: -50%;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+.homecont{
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+ }
+ .homecont h1{
+    font-size: 78px ;
+    font-weight:700 ;
+    text-shadow: 0 0 10px black;
+ }
+ .homecont p{
+    text-align: center;
+    font-size: 16px;
+    text-shadow: 0 0 10px black;
+    margin-bottom: 25px
+ }
+ .homecont  .stbtn{
+    width: 190px;
+    height: 55px;
+    background: #c40094;
+    color: white;
+    border: 2px solid white;
+    border-radius: 6px;
+    font-size: 18px;
+    box-shadow: 0 0 10px #c40094;
+    outline: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: 600;
+    transition: .5s;
+     
+ }
+ .homecont  .stbtn:hover{
+    background-color: #09001d;
+    box-shadow: none;
+ }
+  .popup{
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%,-50%)scale(.9);
+     background: rgb(255, 255, 255);
+     padding: 10px 25px;
+     width: 500px ;
+     border-radius: 6px;
+     transition: .4s ease;
+     opacity: 0;
+     pointer-events: none;
+    
+  }
+  .popup h2{
+      color: #c40094;
+      font-size: 50px;
+  }
+  .info{
+    display: inline-block;
+    font-weight: 400;
+    color: #333;
+    font-size: 16px;
+    margin: 4px 0;
+  }
+  .btns{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #999;
+    margin-top: 10px;
+    padding: 15px 0 7px;
+  }
+
+  .bt{
+    background: #c40094;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    width: 130px;
+    height: 45px;
+    border: 2px solid #c40094;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(0, 0, 0) ;
+    transition: .5s;
+  }
+
+  .bt:nth-child(1){
+    background: transparent;
+    color: #c40094;
+  }
+
+  .bt:nth-child(1):hover{
+    background: #c40094;
+    color: white;
+  }
+
+  .bt:nth-child(2):hover{
+    background: #950170;
+    color: #ffffff;
+  }
+
+  .container{
+    height: 100vh;
+    display: flex;
+    width: 200%;
+}
+
+  .popup.active{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%,-50%)scale(1);
+  }
+
+  .main.active{
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  .quiz{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #09001d;
+    position: relative;
+    left: -50%;
+    transition-delay: .25s;
+    transition: .8s ease;
+    z-index: 100;
+  }
+  .quiz.active{
+    left: 0;
+  }
+
+  .quiz .quizbox {
+    position: relative;
+    width: 500px;
+    background: transparent;
+    border: 2px solid #c40094;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    opacity: 0;
+    transform: scale(.9);
+    pointer-events: none;
+    transition: .3s ease;
+    transition-delay: 0s;
+  }
+
+  .quiz .quizbox.active{
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    transition: 1s ease;
+    transition-delay: 1s;
+  }
+
+  .quizbox h1{
+    text-align: center;
+    font-size: 32px;
+    background: linear-gradient(to right, transparent,#c40094,transparent);
+    border-radius: 6px;
+  }
+
+  .quizbox .quizhead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+    border-bottom: 2px solid #c40094;
+  }
+
+  .quizhead span{
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .quizhead .score{
+    padding: 7px;
+    border-radius: 3px;
+    background: #c40094;
+  }
+
+  .quizbox .ques{
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .optionslst .option{
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    border-radius: 4px;
+    padding: 12px;
+    width: 100%;
+    font-size: 17px;
+    margin: 20px 0;
+    cursor: pointer; 
+    transition: .3s;
+  }
+
+  .optionslst .option:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .quizbox .quizfooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #c40094;
+    padding-top: 20px;
+    margin-top: 25px;
+  }
+
+  .quizfooter .questotal {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .quizfooter .next {
+    width: 100px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    outline: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    pointer-events: none; 
+    transition: .5s;
+    
+  }
+
+  .quizfooter .next.active{
+    pointer-events: auto;
+    background-color: #c40094;
+    border-bottom: #c40094;
+    color: white;
+  }
+
+  .quizfooter .next.active:hover {
+    background: #950170;
+    border-color: #950170;
+  }
+
+  .optionslst .option.correct{
+    background-color: #09001d;
+    border-color: #00a63d;
+    color: #00a63d
+  }
+
+  .optionslst .option.incorrect{
+    background-color: #09001d;
+    border-color: #a60045;
+    color: #a60045;
+  }
+
+  .optionslst .option.disabled{
+    pointer-events: none;
+  }
+
+  .quiz .resbox{
+    position: absolute;
+    transform: translate(-50%,-50%) scale(.9);
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    border: 2px solid #c40094;
+    padding: 20px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: .1s ease;
+  }
+
+  .resbox h2{
+     font-size: 52px;
+  }
+
+  .resbox .percentage {
+    width: 300px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0 40px;
+
+  }
+
+  .percentage .circular {
+   position: relative;
+    height: 250px;
+    width: 250px;
+    background: conic-gradient(
+      #c40094 3.6deg,
+      rgba(255, 255, 255, 0.1) 0deg
+  );
+  
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .percentage .circular::before{
+    content: " ";
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    background: #09001d;
+    border-radius: 50%;
+
+  }
+
+  .percentage .provalue {
+    font-size: 45px;
+    position: relative;
+    font-size: 600;
+  }
+
+  .scoreText {
+    font-size: 26px;
+    font-weight: 600px;
+  }
+
+  .buttons button {
+    width: 140px;
+    height: 47px;
+    background: #c40094;
+    border: 2px solid #c40094;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 20px 20px;
+    cursor: pointer;
+    outline: none;
+    transition: .5s;
+  }
+
+  .buttons button:nth-child(2){
+    background: transparent;
+    color: #c40094;
+  }
+
+  .buttons button:nth-child(2):hover{
+    background: #c40094;
+    color: white;
+  }
+
+  .buttons button:nth-child(1):hover{
+    background: #950170;
+    border-color: #950170;
+  }
+
+  .resbox.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%,-50%) scale(1);
+    transition: .5s ease;
+  }
