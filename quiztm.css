@@ -29,11 +29,57 @@ body{
     filter: drop-shadow(0 0 5px black);
      
 }
+#menu-toggle {
+  position: absolute;
+  left: -9999px; 
+  opacity: 0; 
+}
+
+.menu-icon {
+  display: none; 
+}
+
+@media screen and (max-width: 768px) {
+  .menu-icon {
+    display: inline-block; 
+}
+  .header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      padding: 10px;
+      background-color: #333;
+  }
+
+  .menu-icon {
+      cursor: pointer;
+      color: white;
+      font-size: 24px;
+  }
+
+  #menu-toggle:checked + .menu-icon ~ .nav-links {
+      display: block;
+  }
+
+  #menu-toggle {
+      display: none;
+  }
+  .home {
+    width: 95%; 
+    padding: 15px; 
+}
+}
+
 .aba{
  
   position: relative;
 }
-nav a,span{ 
+nav a, .span{ 
 font-size: 18px;
 color: white;
 text-decoration: none;
@@ -62,15 +108,16 @@ nav a:hover .abt {
 }
 main{
     min-height: 100vh;
-    background-image: url('bg1.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    
     transition: .3s ease;
     pointer-events: auto;
    
  }
  .home{
+  background-image: url('bg1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     position: relative;
     left: -50%;
     height: 100vh;
