@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Simulator</title>
+    <link rel="stylesheet" href="index.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+    <div class="form">
+        <form action="#">
+            <h1>QR Simulator</h1>
+            <input id="in" placeholder="Enter URL to generate QR code" type="text">
+            <div class="code"></div>
+            <button onclick="generate()">Generate QR</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function generate(){
+            const divi = document.querySelector(".code");
+            const data = document.getElementById("in").value;
+            const ele = document.createElement("div");
+            ele.setAttribute("class","ele");
+            if (data.trim() !== '') {
+                ele.innerHTML = '';
+                new QRCode(ele, data);
+                divi.appendChild(ele);
+            } else {
+                alert('Please enter a valid URL.');
+            }
+        }
+    </script>
+</body>
+</html>
