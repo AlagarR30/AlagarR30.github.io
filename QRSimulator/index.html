@@ -23,9 +23,10 @@
             const divi = document.querySelector(".code");
             const data = document.getElementById("in").value;
             const ele = document.createElement("div");
-            ele.setAttribute("class","ele");
+            ele.setAttribute("class", "ele");
+            divi.innerHTML = '';
+
             if (data.trim() !== '') {
-                divi.innerHTML = '';
                 new QRCode(ele, data);
                 divi.appendChild(ele);
             } else {
