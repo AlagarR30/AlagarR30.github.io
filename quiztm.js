@@ -8,8 +8,7 @@ const firebaseConfig = {
     measurementId: "G-YKZY0RS6V1"
   };
   firebase.initializeApp(firebaseConfig);
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  const analytics = getAnalytics();
 
 const start = document.querySelector(".stbtn");
 const popup = document.querySelector(".popup");
