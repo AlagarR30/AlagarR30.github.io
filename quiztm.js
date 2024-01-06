@@ -158,10 +158,7 @@ function resShow(){
     let start =-1;
     let end =(userScore / (questions.length*2))*100;
     let speed =20;
-    if(attempt <=1){
-        const name =naam.value;
-        putresult(name,userScore);
-    }
+   
     let process = setInterval( () => {
         start++;
         proval.textContent=`${start}%`;
@@ -171,6 +168,11 @@ function resShow(){
         }
 
     },speed)
+
+    if(attempt <=1){
+        const name =naam.value;
+        putresult(name,userScore);
+    }
 }
 function putresult(uname, uscore) {
     const usersRef = db.ref('quizResults');
