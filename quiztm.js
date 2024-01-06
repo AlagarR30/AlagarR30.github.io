@@ -7,6 +7,7 @@ const firebaseConfig = {
     appId: "1:745546945742:web:0e6d75c25f290751626c9f",
     measurementId: "G-YKZY0RS6V1"
   };
+  firebase.initializeApp(firebaseConfig);
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
