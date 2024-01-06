@@ -7,9 +7,9 @@ const firebaseConfig = {
     appId: "1:745546945742:web:0e6d75c25f290751626c9f",
     measurementId: "G-YKZY0RS6V1"
   };
-  firebase.initializeApp(firebaseConfig);
-  const analytics = getAnalytics();
+firebase.initializeApp(firebaseConfig);
 
+const db = firebase.database();
 const start = document.querySelector(".stbtn");
 const popup = document.querySelector(".popup");
 const popup2 = document.querySelector(".popup2");
@@ -158,7 +158,10 @@ function resShow(){
     let start =-1;
     let end =(userScore / (questions.length*2))*100;
     let speed =20;
-    
+    if(attempt <=1){
+        const name =naam.value;
+        putresult(name,userScore);
+    }
     let process = setInterval( () => {
         start++;
         proval.textContent=`${start}%`;
@@ -166,27 +169,23 @@ function resShow(){
         if(start==end){
             clearInterval(process);
         }
-        if(attempt <=1){
-            const name =naam.value;
-            putresult(name,userScore);
-        }
 
     },speed)
 }
 function putresult(uname, uscore) {
-    const database = firebase.database();
-    const reference = database.ref('quizResults');
-    const resdata = {
-        name: uname,
-        obtainedScore: uscore,
-        timestamp: firebase.database.ServerValue.TIMESTAMP
-    };
+    const usersRef = db.ref('quizResults');
 
-    reference.push(resdata)
-        .then(() => {
-            alert('Your score has been Updated');
-        })
-        .catch((error) => {
-            alert('Error saving quiz result: ' + error);
-        });
+      usersRef.push({
+        username: uname,
+        score: uscore,
+        timeStamp : firebase.database.ServerValue.TIMESTAMP
+      })
+      .then(() => {
+        console.log("Your score has been Updated!");
+        alert("Your score has been Updated");
+      })
+      .catch((error) => {
+        console.error("Error adding data: ", error);
+        alert("Error adding data. Please try again.");
+      });;
 }
