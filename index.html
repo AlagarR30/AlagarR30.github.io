@@ -7,23 +7,25 @@
     <link rel="stylesheet" href="quiztm.css">
     <link rel="icon" href="logo.png">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <script type="module" src="firebaseConfig.js"></script>
 </head>
 <body>
     <main class="main">
         <header class="header">
             <a href="#" class="logo">Quiztm.</a>
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-icon">&#9776;</label>
             <nav class="nav-links">
-                <a href="#" class="active">Home</a>
-                <a class="aba" href="#"> 
-                    <span class=".span">About</span>
-                    <div class="abt">
-                        <li>"Explore the World of Quizzes!</li>
-                        <li>Welcome to QuizTM, your gateway to an exciting world of knowledge, fun, and discovery into our captivating collection of quizzes covering a wide range of topics, from general trivia to niche interests.</span></div>
+                <a href="#" id="active" class="nele">Home</a>
+                <a class="nele" href="#"> 
+                        <span>About</span>
+                        <div class="abt">
+                            <ul>
+                                <li>Explore the World of Quizzes!</li>
+                                <li>Welcome to QuizTM, your gateway to an exciting world of knowledge, fun, and discovery into our captivating collection of quizzes covering a wide range of topics, from general trivia to niche interests.</li>
+                            </ul>
+                        </div>
                 </a>
-                <a href="#">Services</a>
-                <a href="#">Contact</a>
+                <a href="#" class="nele">Services</a>
+                <a class="nele" href="#">Contact</a>
             </nav>
         </header>
         <div class="container">
@@ -69,6 +71,7 @@
             </section>
         </div>
     </main>
+
     <div class="popup">
         <h2>Quiz Guide</h2>
         <span class="info">Take your time and understand the questions before choosing an answer.</span>
@@ -81,6 +84,21 @@
             <a href="#" class="bt" id="continue">Continue</a>
         </div>
     </div>
+
+    <div class="popup2">
+        <h2>Ready to Start!</h2>
+        <div class="iniya"><input class="nameinp" placeholder="Enter your name" type="text" required></div>
+        <div class="terms">
+            
+            <input class="check" type="checkbox">
+            <span class="inf">By clicking You are accepeting the <a href="#" class="condit">Terms & Conditions</a><li class="termsandcondi">Will be revealed Soon!</li></span>
+        </div>
+        <div class="btns">
+            <button class="bt2" onclick="exi()">Exit Quiz</button>
+            <a href="#" class="bt2" id="ready">Ready</a>
+        </div>
+    </div>
+
     <script src="quiztm.js"></script>
     <script src="questions.js"></script>
 </body>

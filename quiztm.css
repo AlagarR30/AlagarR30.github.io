@@ -29,57 +29,9 @@ body{
     filter: drop-shadow(0 0 5px black);
      
 }
-#menu-toggle {
-  position: absolute;
-  left: -9999px; 
-  opacity: 0; 
-}
 
-.menu-icon {
-  display: none; 
-}
 
-@media screen and (max-width: 768px) {
-  .menu-icon {
-    display: inline-block; 
-}
-  .header {
-      flex-direction: column;
-      align-items: flex-start;
-  }
-
-  .nav-links {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      padding: 10px;
-      background-color: #333;
-  }
-
-  .menu-icon {
-      cursor: pointer;
-      color: white;
-      font-size: 24px;
-  }
-
-  #menu-toggle:checked + .menu-icon ~ .nav-links {
-      display: block;
-  }
-
-  #menu-toggle {
-      display: none;
-  }
-  .home {
-    width: 95%; 
-    padding: 15px; 
-}
-}
-
-.aba{
- 
-  position: relative;
-}
-nav a, .span{ 
+nav .nele{ 
 font-size: 18px;
 color: white;
 text-decoration: none;
@@ -88,8 +40,8 @@ margin-left: 35px;
 transition: .3s;
 
 }
-nav a:hover,nav a span:hover,
-nav a.active{
+nav  .nele:hover,nav a span:hover,
+nav a#active{
     color: #c40094;
 }
 .abt{
@@ -103,12 +55,12 @@ nav a.active{
   color: white;
 
 }
-nav a:hover .abt {
+
+.nele:nth-child(2):hover .abt{
   display: block;
 }
 main{
     min-height: 100vh;
-    
     transition: .3s ease;
     pointer-events: auto;
    
@@ -163,6 +115,31 @@ main{
     background-color: #09001d;
     box-shadow: none;
  }
+ .terms{
+  border-top: 1.5px dotted #999;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ .check{
+   outline: #c40094;
+   height: 15px;
+ }
+ 
+ .termsandcondi{
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: #fff;
+  transition: 0.3s;
+ }
+ .terms a:hover + .termsandcondi{
+  opacity: 1;
+}
   .popup{
      position: absolute;
      top: 50%;
@@ -177,10 +154,59 @@ main{
      pointer-events: none;
     
   }
+  .popup2{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)scale(.9);
+    background: rgb(255, 255, 255);
+    padding: 10px 25px;
+    width: 500px ;
+    border-radius: 6px;
+    transition: .4s ease;
+    opacity: 0;
+    pointer-events: none;
+   
+ }
   .popup h2{
       color: #c40094;
       font-size: 50px;
+      margin: 20px;
   }
+  .popup2 h2{
+    justify-content: center;
+    display: flex;
+    color: #c40094;
+    font-size: 50px;
+    margin: 15px;
+}
+.iniya{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  
+}
+.popup2 input{
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  text-align: center;
+  width: 90%;
+  caret-color: #c40094;
+  color: black;
+  outline: none;
+  background-color:  #8579823b;
+  border: none;
+  
+}
+
+.inf{
+    font-weight: 400;
+    color: #333;
+    font-size: 16px;
+    width: 150%;
+}
   .info{
     display: inline-block;
     font-weight: 400;
@@ -213,6 +239,23 @@ main{
     box-shadow: 0 0 10px rgb(0, 0, 0) ;
     transition: .5s;
   }
+  .bt2{
+    background: #c40094;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    width: 130px;
+    height: 45px;
+    border: 2px solid #c40094;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(0, 0, 0) ;
+    transition: .5s;
+  }
 
   .bt:nth-child(1){
     background: transparent;
@@ -228,6 +271,20 @@ main{
     background: #950170;
     color: #ffffff;
   }
+  .bt2:nth-child(1){
+    background: transparent;
+    color: #c40094;
+  }
+
+  .bt2:nth-child(1):hover{
+    background: #c40094;
+    color: white;
+  }
+
+  .bt2:nth-child(2):hover{
+    background: #950170;
+    color: #ffffff;
+  }
 
   .container{
     height: 100vh;
@@ -236,6 +293,11 @@ main{
 }
 
   .popup.active{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%,-50%)scale(1);
+  }
+  .popup2.active{
     opacity: 1;
     pointer-events: auto;
     transform: translate(-50%,-50%)scale(1);

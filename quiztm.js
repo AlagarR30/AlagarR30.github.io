@@ -1,6 +1,12 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+
+
 const start = document.querySelector(".stbtn");
 const popup = document.querySelector(".popup");
+const popup2 = document.querySelector(".popup2");
 const main = document.querySelector(".main");
+const ready = document.querySelector("#ready");
 const conti = document.querySelector("#continue");
 const quiz = document.querySelector(".quiz");
 const quizbox = document.querySelector(".quizbox");
@@ -9,14 +15,36 @@ const total =document.querySelector(".questotal");
 const result =document.querySelector(".resbox");
 const tryagain =document.querySelector(".trybut");
 const gohome =document.querySelector(".gohome");
+const naam=document.querySelector(".nameinp");
+const term = document.querySelector(".check");
+let attempt =0;
 
 
 
 start.addEventListener("click" ,()=>{
-    popup.classList.add("active");
+    attempt=0;
+    naam.value='';
+    popup2.classList.add("active");
     main.classList.add("active");
 })
+
+ready.addEventListener("click" ,()=>{
+    const nameval = naam.value;
+    if(nameval.trim()===''){
+        alert('Enter your name before proceeding.');
+    }
+    else if (!term.checked){
+        alert('Please accept the Terms & Conditions.');
+    }
+    else{
+    popup2.classList.remove("active");
+    popup.classList.add("active");
+    main.classList.add("active");
+    }
+})
+
 function exi(){
+    popup2.classList.remove("active");
     popup.classList.remove("active");
     main.classList.remove("active");
 }
@@ -26,6 +54,7 @@ conti.addEventListener('click',()=>{
     popup.classList.remove("active");
     main.classList.remove("active");
     showques(0);
+    attempt=1;
 })
 
 tryagain.addEventListener('click', () => {
@@ -36,6 +65,7 @@ tryagain.addEventListener('click', () => {
     result.classList.remove('active')
     nextbt.classList.remove('active');
     scoreUpdate();
+    attempt+=1;
 
 })
 
@@ -128,6 +158,27 @@ function resShow(){
         if(start==end){
             clearInterval(process);
         }
+        if(attempt <=1){
+            const name =naam.value;
+            putresult(name,userScore);
+        }
 
     },speed)
+}
+function putresult(uname, uscore) {
+    const database = firebase.database();
+    const reference = database.ref('quizResults');
+    const resdata = {
+        name: uname,
+        obtainedScore: uscore,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+    };
+
+    reference.push(resdata)
+        .then(() => {
+            alert('Your score has been Updated');
+        })
+        .catch((error) => {
+            alert('Error saving quiz result: ' + error);
+        });
 }
