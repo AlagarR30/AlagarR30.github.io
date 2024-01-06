@@ -173,6 +173,7 @@ function resShow(){
         const name =naam.value;
         putresult(name,userScore);
     }
+    else alert('Only the first attempt can be updated!');
 }
 function putresult(uname, uscore) {
     const usersRef = db.ref('quizResults');
