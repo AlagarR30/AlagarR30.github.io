@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash QuizTM</title>
+    <link rel="icon" href="dash.png">
+    <link rel="stylesheet" href="admin.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<body>
+       
+    <main>
+        <section class="nav">
+            <h1>QuizTM Admin.</h1>
+            <ul>
+                <li class="active">Dashboard</li>
+                <li>Create Quiz</li>
+                <li>End Quiz</li>
+                <li>Analytics</li>
+            </ul>
+        </section>
+        <section class="dash">
+            <nav>
+                <div>
+                    <button class="burger" onclick="hambur()">&#9776;</button>
+                    <h1>Dash UI</h1>
+                </div>
+                
+                <button onclick="downloadExcel()">Download Excel</button>
+            </nav>
+            <div class="color"><p>Quiztm > Admin > Dashboard</p></div>
+            <div class="cont">
+                <div class="element" onclick="sorry()">Create Quiz +</div>
+                <div class="element" onclick="sorry()">End Quiz x</div>
+                <div class="element" onclick="sorry()">Analytics!</div>
+                <div class="element" onclick="sorry()">Performance</div>
+               </div>
+            
+            <p class="p">Recorded Responses :  <span id="totalCount"> </span></p>
+            <div id="quizResultsTable" class="tablediv"></div>
+           
+        </section>
+        
+    </main>
+    
+    
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+
+
+    <script>
+        const firebaseConfig = {
+    apiKey: "AIzaSyDbQA1i0INdj866ojIL_oZU36fUrF7yr7Y",
+    authDomain: "quiztm-9250c.firebaseapp.com",
+    projectId: "quiztm-9250c",
+    storageBucket: "quiztm-9250c.appspot.com",
+    messagingSenderId: "745546945742",
+    appId: "1:745546945742:web:0e6d75c25f290751626c9f",
+    measurementId: "G-YKZY0RS6V1"
+  };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        function displayQuizResults() {
+            const quizResultsTable = document.getElementById('quizResultsTable');
+            const totalCountSpan = document.getElementById('totalCount');
+            const quizResultsRef = database.ref('quizResults');
+
+            quizResultsRef.once('value', (snapshot) => {
+                const data = snapshot.val();
+                let tableHTML = '<table border="1"><tr><th>Username</th><th>Score</th><th>RollNo</th><th>Timestamp</th></tr>';
+                let totalCount = 0;
+
+                for (const key in data) {
+                    const { username, score,rollno, timeStamp } = data[key];
+                    tableHTML += `<tr><td>${username}</td><td>${score}</td><td>${rollno}</td><td>${new Date(timeStamp)}</td></tr>`;
+                    totalCount += 1;
+                }
+
+                tableHTML += '</table>';
+
+                quizResultsTable.innerHTML = tableHTML;
+                totalCountSpan.innerText = totalCount;
+            });
+        }
+
+        function convertTimestamp(timestamp) {
+        const date = new Date(timestamp);
+        return date.toLocaleString(); 
+    }
+    function sorry(){
+        alert('Sorry,This features are currently Unavailable!')
+    }
+    const nav=document.querySelector(".nav");
+    function hambur(){
+        if(nav.className=="nav"){
+            nav.className+="active";
+        }
+        else nav.className = "nav";
+    }
+    function downloadExcel() {
+        fetch('https://quiztm-9250c-default-rtdb.firebaseio.com/quizResults.json')
+            .then(response => response.json())
+            .then(data => {
+                const formattedData = Object.values(data).map(entry => ({
+                    Name: entry.username,
+                    Rollno: entry.rollno,
+                    Score: entry.score,
+                    Date: convertTimestamp(entry.timeStamp),
+                }));
+
+    
+                const worksheet = XLSX.utils.json_to_sheet(formattedData);
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, 'QuizResults');
+                
+                XLSX.writeFile(workbook, 'quiz_results.xlsx');
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+
+
+        displayQuizResults();
+    </script>
+</body>
+</html>
