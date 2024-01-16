@@ -8,6 +8,7 @@ body{
     color: white ;
     background-color: black;
     overflow: hidden;
+    font-size: 16px;
 }
 .header{ 
     position: fixed;
@@ -31,7 +32,7 @@ body{
 }
 
 
-nav .nele{ 
+nav .nele , .adminButton{ 
 font-size: 18px;
 color: white;
 text-decoration: none;
@@ -51,7 +52,7 @@ nav a#active{
   display: none;
   position: absolute;
   z-index: 1;
-  min-width:500px;
+  max-width:600px;
   color: white;
 
 }
@@ -125,8 +126,23 @@ main{
  .check{
    outline: #c40094;
    height: 15px;
+   cursor: pointer;
  }
- 
+  .adminButton{
+    padding: 6px 12px;
+    outline: none;
+    border: 1px solid white;
+    font-weight: 500;
+    color: white;
+    border-radius: 5px;
+    background-color: #09001d;
+    box-shadow: none;
+    transition: .5s ease;
+  }
+  .adminButton:hover{
+    box-shadow: 0px 0px 10px #c40094;
+    background-color: #c40094;
+  }
  .termsandcondi{
   opacity: 0;
   position: absolute;
@@ -168,6 +184,97 @@ main{
     pointer-events: none;
    
  }
+ .adminlog{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%,-50%)scale(.9);
+  background: rgb(255, 255, 255);
+  padding: 10px 25px;
+  width: 500px ;
+  border-radius: 6px;
+  transition: .4s ease;
+  padding-bottom: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .5s ease;
+}
+.adminlog.active{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%,-50%)scale(1);
+}
+.adminlog .h{
+  display: flex;
+  justify-content: center;
+}
+.adminlog h2{
+    text-align: center;
+    font-size: 32px;
+    border-radius: 6px;
+    color: #c40094;
+}
+.adminlog span{
+  color: #383838;
+ 
+}
+.adminlog .img{
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.adminlog img {
+  display: flex;
+  margin-top: -50px ;
+  height: 150px;
+
+}
+.adminlog input{
+  margin-top: 20px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  outline: none;
+  border: 2px solid #333;
+
+}
+
+.adminlog .b .log{
+  width: 250px;
+  height: 45px;
+  border-radius: 6px;
+  color: white;
+  background-color: #c40094;
+  border: 2px solid white;
+  margin: 20px;
+  transition: .5s ease;
+}
+.adminlog .b .log:hover{
+  background: #8a0067;
+  border-color:#8a0067 ;
+}
+.adminlog .b{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.adminlog .forgot{
+  text-align: center;
+}
+.adminlog .img .x{
+  right: 4%;
+  position: absolute;
+  background: transparent;
+  font-size: medium;
+  outline: none;
+  border: none;
+  color: #333333d2;
+
+}
+.adminlog .img .x:hover{
+  color: #09001d;
+}
   .popup h2{
       color: #c40094;
       font-size: 50px;
@@ -196,7 +303,7 @@ main{
   caret-color: #c40094;
   color: black;
   outline: none;
-  background-color:  #8579823b;
+  background-color:  #b9b9b93b;
   border: none;
   
 }
@@ -558,3 +665,36 @@ main{
     transform: translate(-50%,-50%) scale(1);
     transition: .5s ease;
   }
+  .mobile-message {
+    height: 100vh;
+    align-items: center;
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    color: white;
+  }
+  
+
+@media only screen and (max-width: 768px) {
+  
+  body {
+    background-color: #09001d; 
+  }
+  main{
+    display: none;
+  }
+  .quiz {
+    display: none; 
+  }
+
+  .mobile-message {
+
+    align-items: center;
+    display: flex; 
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    color: white;
+  }
+}

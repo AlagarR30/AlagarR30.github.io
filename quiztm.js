@@ -24,11 +24,33 @@ const result =document.querySelector(".resbox");
 const tryagain =document.querySelector(".trybut");
 const gohome =document.querySelector(".gohome");
 const naam=document.querySelector(".nameinp");
+const roll=document.querySelector("#rollinp");
 const term = document.querySelector(".check");
+const adminLogin = document.querySelector(".adminlog");
 let attempt =0;
+const Admin = "Admin.quiztm";
+const AminPass = "qwertyuiop";
 
 
+function admlog(){
+    adminLogin.classList.add("active");
+    main.classList.add("active");
+}
 
+function auth(){
+    const n = document.querySelector("#adminName").value;
+    const p = document.querySelector("#adminPass").value;
+    if(n!=Admin){
+        alert('Please enter valid username!');
+    }
+    else if(p!=AminPass){
+        alert('Invalid password!');
+    }
+    else {
+        alert('Validation succeeded!');
+        location.href="admin.html";
+    }
+}
 start.addEventListener("click" ,()=>{
     attempt=0;
     naam.value='';
@@ -55,6 +77,7 @@ function exi(){
     popup2.classList.remove("active");
     popup.classList.remove("active");
     main.classList.remove("active");
+    adminLogin.classList.remove("active");
 }
 conti.addEventListener('click',()=>{
     quiz.classList.add("active");
@@ -171,15 +194,17 @@ function resShow(){
 
     if(attempt <=1){
         const name =naam.value;
-        putresult(name,userScore);
+        const rolln = roll.value
+        putresult(name,userScore,rolln);
     }
     else alert('Only the first attempt can be updated!');
 }
-function putresult(uname, uscore) {
+function putresult(uname, uscore,rol) {
     const usersRef = db.ref('quizResults');
 
       usersRef.push({
         username: uname,
+        rollno: rol,
         score: uscore,
         timeStamp : firebase.database.ServerValue.TIMESTAMP
       })

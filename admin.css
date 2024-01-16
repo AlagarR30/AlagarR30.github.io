@@ -1,0 +1,166 @@
+body{
+    margin: 0;
+    color: white;
+    font-family: poppins,sans-serif;
+    padding: 0;
+}
+main{
+    display: flex;
+    height: 100vh;
+}
+.nav{
+    left: 0;
+    position: relative;
+    padding-left: 0;
+    min-height: 100vh;
+    width: 20vw;
+    background: #212b36;
+    transition: .3s ease;
+}
+.nav h1{
+   margin-left: 2vw;
+   padding-bottom: 5%;
+   border-bottom: 1px solid #919eabda;
+}
+.dash{
+    color: #212b36;
+    background-color: #f5f3ffc9;
+}
+.nav ul{
+    margin-left: 0;
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+}
+.dash nav button {
+    padding: 1.6% 3%;
+    border-radius: 5px;
+    font-weight: 400;
+    border: none;
+    background-color: #624bff;
+    color: white;
+    transition: .3s ease;
+    outline: none;
+}
+.dash nav button:hover{
+    border: 1px solid #212b36;
+    color: #212b36;
+    background-color: transparent;
+   
+}
+.dash nav button:active{
+    background-color: #212b36;
+    color: #919EAB;
+}
+.burger{
+    border: none;
+    font-size: large;
+    color: #212b36;
+}
+.dash nav{
+    width: 70vw;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8% 0 5%;
+}
+.dash nav div {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+li{
+    color: #919EAB;
+    font-weight: 400;
+    margin-top: 10%;
+}
+li.active{
+    color: #f4f6f8;
+}
+li:hover{
+    color: #f4f6f8;
+}
+.dash{
+    width: 80vw;
+}
+.color{
+    height: 20vh;
+    width: 100%;
+    background-color: #624bff;
+    
+}  
+.color p{
+    padding: 2%;
+    color: white;
+    font-weight: 500;
+    font-size: large;
+}
+.cont{
+
+    margin: -5% 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.cont .element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight: 600;
+    width: 20%;
+    border-radius: 4px;
+    color: #212b36;
+    background-color: rgb(255, 255, 255);
+    height: 18vh;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer; 
+}
+.cont .element:hover{
+    box-shadow:0 2px 5px rgba(0, 0, 0, 0.8) ;
+}
+.dash .p{
+    margin: 10%  auto 5% auto;
+    width: 73vw;
+    font-weight: 500;
+    border-radius: 5px;
+    background-color: white;
+    align-items: center;
+    padding: 0 2%;
+    display: flex;
+    height: 10%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.dash .p span {
+    margin-left: 1vw;
+}
+.dash .tablediv{
+    margin: auto;
+    padding: 0 2%;
+    width: 73vw;
+    font-weight: 500;
+    border-radius: 5px;
+}
+.dash .tablediv table{
+    width: 100%;
+}
+table th{
+    padding: 1%;
+    border: none;
+    background-color: white;
+    color: #624bff;
+    border-bottom: 1px solid #919EAB;
+}
+table td{
+    padding: 1%;
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid #919EAB;
+}
+.nav.active{
+    position: absolute;
+    left: -50%;
+    transition: .3s ease;
+}

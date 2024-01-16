@@ -11,6 +11,9 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 <body>
+    <div class="mobile-message">
+        &#128712; You may not attend the quiz from a mobile device. Please use a desktop or laptop.
+      </div>
     <main class="main">
         <header class="header">
             <a href="#" class="logo">Quiztm.</a>
@@ -27,6 +30,7 @@
                 </a>
                 <a href="#" class="nele">Services</a>
                 <a class="nele" href="#">Contact</a>
+                <button class="adminButton" onclick="admlog()">Admin</button>
             </nav>
         </header>
         <div class="container">
@@ -89,6 +93,7 @@
     <div class="popup2">
         <h2>Ready to Start!</h2>
         <div class="iniya"><input class="nameinp" placeholder="Enter your name" type="text" required></div>
+        <div class="iniya"><input id="rollinp" placeholder="RollNo" type="text" required></div>
         <div class="terms">
             
             <input class="check" type="checkbox">
@@ -98,6 +103,16 @@
             <button class="bt2" onclick="exi()">Exit Quiz</button>
             <a href="#" class="bt2" id="ready">Ready</a>
         </div>
+    </div>
+    <div class="adminlog">
+            <div class="img"><img src="adminpor.png" alt="Admin img"><button class="x" onclick="exi()">Close X</button></div>
+            <div class="h"><h2>Welcome to Admin panel</h2></div>
+            <span>Enter your LogIn credentials</span>
+        
+        <input type="text" id="adminName" class="adminname" placeholder="@Username"> 
+        <input type="password" id="adminPass" class="adminpass" placeholder="Password">
+        <div class="b"><button onclick="auth()" class="log">Login</button></div>
+        <span class="forgot"><a href="#">Forgot</a> Password?</span>
     </div>
     <script src="quiztm.js"></script>
     <script src="questions.js"></script>
