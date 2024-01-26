@@ -17,7 +17,7 @@ const main = document.querySelector(".main");
 const ready = document.querySelector("#ready");
 const conti = document.querySelector("#continue");
 const quiz = document.querySelector(".quiz");
-const quizbox = document.querySelector(".quizbox");
+const quizbox = document.querySelector(".quizbox"); 
 const nextbt = document.querySelector(".next");
 const total =document.querySelector(".questotal");
 const result =document.querySelector(".resbox");
@@ -199,6 +199,9 @@ function resShow(){
     }
     else alert('Only the first attempt can be updated!');
 }
+function authenticate(){
+    const authRef = db.ref('auth')
+}
 function putresult(uname, uscore,rol) {
     const usersRef = db.ref('quizResults');
 
@@ -209,8 +212,7 @@ function putresult(uname, uscore,rol) {
         timeStamp : firebase.database.ServerValue.TIMESTAMP
       })
       .then(() => {
-        console.log("Your score has been Updated!");
-        alert("Your score has been Updated");
+        alert("Your response has been Updated!");
       })
       .catch((error) => {
         console.error("Error adding data: ", error);

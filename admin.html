@@ -11,36 +11,36 @@
 <body>
        
     <main>
-        <section class="nav">
-            <h1>QuizTM Admin.</h1>
-            <ul>
-                <li class="active">Dashboard</li>
-                <li>Create Quiz</li>
-                <li>End Quiz</li>
-                <li>Analytics</li>
-            </ul>
-        </section>
-        <section class="dash">
-            <nav>
-                <div>
-                    <button class="burger" onclick="hambur()">&#9776;</button>
-                    <h1>Dash UI</h1>
-                </div>
-                
-                <button onclick="downloadExcel()">Download Excel</button>
-            </nav>
-            <div class="color"><p>Quiztm > Admin > Dashboard</p></div>
-            <div class="cont">
-                <div class="element" onclick="sorry()">Create Quiz +</div>
-                <div class="element" onclick="sorry()">End Quiz x</div>
-                <div class="element" onclick="sorry()">Analytics!</div>
-                <div class="element" onclick="sorry()">Performance</div>
-               </div>
-            
-            <p class="p">Recorded Responses :  <span id="totalCount"> </span></p>
-            <div id="quizResultsTable" class="tablediv"></div>
-           
-        </section>
+                        <section class="nav">
+                            <h1>QuizTM Admin.</h1>
+                            <ul>
+                                <li class="active">Dashboard</li>
+                                <li>Create Quiz</li>
+                                <li>End Quiz</li>
+                                <li>Analytics</li>
+                            </ul>
+                        </section>
+                        <section class="dash">
+                            <nav>
+                                <div>
+                                    <button class="burger" onclick="hambur()">&#9776;</button>
+                                    <h1>Dash UI</h1>
+                                </div>
+                                
+                                <button onclick="downloadExcel()">Download Excel</button>
+                            </nav>
+                            <div class="color"><p>Quiztm > Admin > Dashboard</p></div>
+                            <div class="cont">
+                                <div class="element" onclick="sorry()">Create Quiz +</div>
+                                <div class="element" onclick="sorry()">End Quiz x</div>
+                                <div class="element" onclick="sorry()">Analytics!</div>
+                                <div class="element" onclick="sorry()">Performance</div>
+                            </div>
+                            
+                            <p class="p">Recorded Responses :  <span id="totalCount"> </span></p>
+                            <div id="quizResultsTable" class="tablediv"></div>
+                        
+                        </section>
         
     </main>
     
@@ -69,21 +69,37 @@
             const quizResultsRef = database.ref('quizResults');
 
             quizResultsRef.once('value', (snapshot) => {
-                const data = snapshot.val();
-                let tableHTML = '<table border="1"><tr><th>Username</th><th>Score</th><th>RollNo</th><th>Timestamp</th></tr>';
-                let totalCount = 0;
+    const data = snapshot.val();
+    let tableHTML = '<table border="1"><tr><th>Username</th><th>Score</th><th>RollNo</th><th>Timestamp</th></tr>';
+    let totalCount = 0;
 
-                for (const key in data) {
-                    const { username, score,rollno, timeStamp } = data[key];
-                    tableHTML += `<tr><td>${username}</td><td>${score}</td><td>${rollno}</td><td>${new Date(timeStamp)}</td></tr>`;
-                    totalCount += 1;
-                }
+    for (const key in data) {
+        const { username, score, rollno, timeStamp } = data[key];
 
-                tableHTML += '</table>';
+        // Convert timestamp to a Date object
+        const dateObject = new Date(timeStamp);
 
-                quizResultsTable.innerHTML = tableHTML;
-                totalCountSpan.innerText = totalCount;
-            });
+        // Customize the date and time format
+        const formattedTimestamp = dateObject.toLocaleString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        });
+
+       
+        tableHTML += `<tr><td>${username}</td><td>${score}</td><td>${rollno}</td><td>${formattedTimestamp}</td></tr>`;
+
+        totalCount += 1;
+    }
+
+    tableHTML += '</table>';
+    quizResultsTable.innerHTML = tableHTML;
+    totalCountSpan.innerText = totalCount;
+});
+
         }
 
         function convertTimestamp(timestamp) {
@@ -127,3 +143,4 @@
     </script>
 </body>
 </html>
+
