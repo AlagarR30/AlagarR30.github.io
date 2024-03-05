@@ -28,29 +28,39 @@ const roll=document.querySelector("#rollinp");
 const term = document.querySelector(".check");
 const adminLogin = document.querySelector(".adminlog");
 let attempt =0;
-const Admin = "Admin.quiztm";
-const AminPass = "qwertyuiop";
 
 
 function admlog(){
     adminLogin.classList.add("active");
     main.classList.add("active");
 }
-
-function auth(){
-    const n = document.querySelector("#adminName").value;
-    const p = document.querySelector("#adminPass").value;
-    if(n!=Admin){
-        alert('Please enter valid username!');
-    }
-    else if(p!=AminPass){
-        alert('Invalid password!');
-    }
-    else {
-        alert('Validation succeeded!');
-        location.href="admin.html";
-    }
+function sorry(){
+    alert('Currently unavailable!')
 }
+function auth(){
+    const email = document.querySelector("#adminName").value;
+    const password = document.querySelector("#adminPass").value;
+    if(!email || !password){
+        alert('Email and password are required!');
+    }
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredentials) => {
+        window.location.href = "admin.html";
+        alert(`Hey QuiztmAdmin! Press OK to redirect to the dashboard!`);
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === 'auth/user-not-found') {
+            alert('User not found. Please check your email.');
+        } else if (errorCode === 'auth/wrong-password') {
+            alert('Incorrect password. Please try again.');
+        } else {
+            alert(`Error: Invalid Credentials!`);
+        }
+    });
+}
+
 start.addEventListener("click" ,()=>{
     attempt=0;
     naam.value='';
