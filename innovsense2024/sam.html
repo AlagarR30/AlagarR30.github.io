@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample firebase added</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+    <div>
+        <label>
+            Bulb 1
+            <img id="Bulb1" class="clickable" src="OFFbulb.jpg">
+        </label>
+        <label>
+            Bulb 2
+            <img id="Bulb2" class="clickable" src="OFFbulb.jpg">   
+        </label>    
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const firebaseConfig = {
+            apiKey: "AIzaSyD4wb39OGdKhkjI0Muuqu4ypgD23fuwmEM",
+            authDomain: "innovsense-2024.firebaseapp.com",
+            projectId: "innovsense-2024",
+            storageBucket: "innovsense-2024.appspot.com",
+            messagingSenderId: "241742405711",
+            appId: "1:241742405711:web:c6a97ed2760eeb358d0a3a",
+            measurementId: "G-42HRCRJMLZ"
+        };
+
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.database();
+            const bulbsState = {
+                Bulb1: false,
+                Bulb2: false
+            };
+
+            const bulbs = document.querySelectorAll('.clickable');
+
+            bulbs.forEach(bulb => {
+                bulb.addEventListener('click', () => {
+                    const bulbId = bulb.id;
+                    const newState = !bulbsState[bulbId]; // Toggle state
+                    updateBulb(bulbId, newState);
+                });
+            });
+
+            function turnOnOff(bulbId, state) {
+                const image = document.getElementById(bulbId);
+                image.src = state ? "ONbulb.jpg" : "OFFbulb.jpg";
+            }
+
+            function updateBulb(bulbId, state) {
+                bulbsState[bulbId] = state;
+                const usersRef = db.ref('Status');
+                usersRef.set(bulbsState);
+                turnOnOff(bulbId, state);
+            }
+
+            function initializeBulbsState() {
+                const usersRef = db.ref('Status');
+                usersRef.once('value').then(snapshot => {
+                    const data = snapshot.val();
+                    if (data) {
+                        Object.assign(bulbsState, data);
+                        for (const bulbId in bulbsState) {
+                            turnOnOff(bulbId, bulbsState[bulbId]);
+                        }
+                    }
+                });
+            }
+
+            initializeBulbsState();
+        });
+    </script>
+</body>
+</html>

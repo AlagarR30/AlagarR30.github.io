@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body style="background-color: black;color: aliceblue;">
+    <center>Refresh me to add usage data to firebase</center>
+    <script>    
+    const firebaseConfig = {
+        apiKey: "AIzaSyD4wb39OGdKhkjI0Muuqu4ypgD23fuwmEM",
+        authDomain: "innovsense-2024.firebaseapp.com",
+        projectId: "innovsense-2024",
+        storageBucket: "innovsense-2024.appspot.com",
+        messagingSenderId: "241742405711",
+        appId: "1:241742405711:web:c6a97ed2760eeb358d0a3a",
+        measurementId: "G-42HRCRJMLZ"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const refr = db.ref('TotalConsumption')
+    let use=Math.floor(Math.random()*10)+1;
+    let duration = Math.floor(Math.random()*10)+1;
+
+    refr.once('value').then((snapshot) => {
+        let ttl = snapshot.val() || 0;
+
+        const powerConsumptionData = {
+            PoleNo: Math.floor(Math.random()*2)+1,
+            timeStamp: firebase.database.ServerValue.TIMESTAMP,
+            Duration:duration,
+            usage: use,
+            totalUsage: ttl + use
+        }
+        const usersRef = db.ref('Usage');
+        usersRef.push(powerConsumptionData);
+        refr.set(ttl+use);
+    })
+    .catch(function(error) {
+        alert('Error retrieving TotalConsumption:', error);
+    });
+    const fault = db.ref('Fault')
+    let faultstatus = {
+        Bulb1 : true,
+        Bulb2 : false
+    }
+    fault.set(faultstatus)
+    </script>
+</body>
+</html>

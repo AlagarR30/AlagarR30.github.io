@@ -1,0 +1,90 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+body{
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  }
+  .text-white{
+          color: #fff;
+          font-size: 3em;
+          font-family: 'poppins',sans-serif;
+          font-weight: 800;
+          opacity: .9;
+          position: relative;
+          text-shadow: 0 0 10px solid rgba(0, 0, 0, 0.747);
+        }
+        .btn-login {
+          color: #fff;
+          background-color: transparent;
+          border: 2px solid #fff;
+          transition: .5s ease;
+        }
+        .lead{
+          text-shadow: 0 0 5px solid black;
+        }
+      
+        .btn-login:hover {
+          color: #000;
+          background-color: #fff;
+        }
+        .btn-primary{
+          background-color: #0553c7;
+        }
+        main{
+          width: 200vw;
+          min-height: 100vh;
+          transition: .3s ease;
+          pointer-events: auto;
+          display: flex;
+        }
+  
+      .hero-section,
+      .login-section {
+          transition: left 0.5s ease-in-out;
+      }
+  
+      .login-section {
+          left: 100%;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background-image: url('logbg.avif'); 
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center top;
+      }
+  
+      .hero-section {
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+          background-image: url('bg.avif'); 
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center top;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-top: 0;
+      }
+  
+      .hide-overflow {
+          overflow: hidden;
+      }
+  .goback{
+    margin-top: 5%;
+  }
+  .form-container {
+    background-color: rgba(255, 255, 255, 0.210);
+  }
+ 
