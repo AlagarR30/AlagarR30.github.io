@@ -176,28 +176,11 @@ function thismonth() {
 function ttl() {
   const user = db.ref('TotalConsumption');
   user.on('value', (snapshot) => {
-    // Get the value from the snapshot
-    const consumptionObject = snapshot.val();
-
-    // Check if consumptionObject is actually an object
-    if (typeof consumptionObject === 'object' && consumptionObject !== null) {
-      // If it's an object, extract the relevant property or handle it accordingly
-      const consumptionValue = consumptionObject.totalPower; // Assuming 'totalPower' is the property containing the total power consumption
-      // Ensure that consumptionValue is a number
-      if (typeof consumptionValue === 'number') {
-        // Find the HTML element with id 'ttlconsmp'
-        const spn = document.getElementById('ttlconsmp');
-        // Update the content of the HTML element with the retrieved value
-        spn.textContent = consumptionValue + ' Watts';
-      } else {
-        console.error('Total power consumption value is not a number');
-      }
-    } else {
-      console.error('Total power consumption data is not in the expected format');
-    }
+      const Consumption = snapshot.val();
+      const spn = document.getElementById('ttlconsmp');
+      spn.textContent = Consumption;
   }, (error) => {
-    // Handle errors if any
-    console.error('Error retrieving TotalConsumption:', error);
+      console.error('Error retrieving TotalConsumption:', error);
   });
 }
 
